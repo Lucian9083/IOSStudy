@@ -1,18 +1,13 @@
 //
-//  ViewController.h
+//  Meal.h
 //  Study
 //
-//  Created by LvZheng on 16/7/20.
+//  Created by LvZheng on 16/8/2.
 //  Copyright © 2016年 LvZheng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface Meal
 
 @end
-
-
-
-
-
