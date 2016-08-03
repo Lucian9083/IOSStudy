@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RatingControl.h"
 
 @interface MealTableViewCell : UITableViewCell
+
+@property (strong, nonatomic) IBOutlet UILabel *name;
+
+@property (strong, nonatomic) IBOutlet UIImageView *photo;
+
+@property (strong, nonatomic) IBOutlet RatingControl *rating;
+
 
 @end
