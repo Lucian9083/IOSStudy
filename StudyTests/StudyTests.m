@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Meal.h"
 
 @interface StudyTests : XCTestCase
 
@@ -27,6 +28,18 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+}
+
+- (void) testMealIntialization{
+    
+    Meal *potentialItem = [[Meal alloc] initWithName:@"Newest meal" rating:5 photo:nil];
+    XCTAssertNotNil(potentialItem);
+    
+    Meal *invalideRating = [[Meal alloc] initWithName:@"Really bad rating" rating:-1 photo:nil];
+    XCTAssertNil(invalideRating,"The num of rating is not valide");
+    
+    Meal *invalideName = [[Meal alloc] initWithName:nil rating:5 photo:nil];
+    XCTAssertNil(invalideName,"Empty name or nil");
 }
 
 - (void)testPerformanceExample {
