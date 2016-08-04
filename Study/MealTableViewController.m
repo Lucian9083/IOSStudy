@@ -9,6 +9,8 @@
 #import "MealTableViewController.h"
 #import "Meal.h"
 #import "MealTableViewCell.h"
+#import "MealViewController.h"
+#import "MealTableViewCell.h"
 
 @interface MealTableViewController ()
 
@@ -81,6 +83,28 @@
     return cell;
 }
 
+// MARK: Action
+- (IBAction)unwindToMealList:(UIStoryboardSegue *)unwindSegue {
+    NSLog(@"I am segue fromm save");
+    
+    MealViewController *mealViewController = unwindSegue.sourceViewController;
+    
+    Meal *meal = mealViewController.meal;
+    
+    // add new meal to table view
+    
+    if(mealViewController && meal){
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_meals.count inSection:0];
+        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+        [_meals addObject:meal];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+    }else{
+        NSLog(@"happened a error");
+    }
+    
+    
+
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,14 +139,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
+    
     // Pass the selected object to the new view controller.
+    
+    if([segue.identifier isEqualToString:@"showDetail"]){
+        
+        MealViewController *mealViewController = [segue destinationViewController];
+        
+        MealTableViewCell *tableViewCell = sender;
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:tableViewCell];
+        
+        Meal *selectMeal = [_meals objectAtIndex:indexPath.row];
+        
+        mealViewController.meal = selectMeal;
+        
+    }else if([segue.identifier isEqualToString:@"addItem"]){
+        
+    };
 }
-*/
+
 
 @end

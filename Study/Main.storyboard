@@ -46,6 +46,7 @@
                                     <outlet property="name" destination="kek-3q-guS" id="811-ah-aWu"/>
                                     <outlet property="photo" destination="qk6-nt-rR8" id="3nH-bb-NLc"/>
                                     <outlet property="rating" destination="5Nf-yk-UnP" id="cT8-KK-x11"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showDetail" id="0Ov-1g-AhZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -57,7 +58,7 @@
                     <navigationItem key="navigationItem" title="Your Meals" id="XVW-5j-QtR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EHT-GK-9jW">
                             <connections>
-                                <segue destination="gnw-oB-06X" kind="presentation" identifier="AddItem" id="yV1-0O-dwA"/>
+                                <segue destination="gnw-oB-06X" kind="presentation" identifier="addItem" id="yV1-0O-dwA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -118,7 +119,11 @@
                                 <action selector="cancel:" destination="BYZ-38-t0r" id="Fc7-OU-r99"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JGb-n1-BjQ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JGb-n1-BjQ">
+                            <connections>
+                                <segue destination="iL9-k7-yej" kind="unwind" unwindAction="unwindToMealList:" id="Qwg-SX-KRr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="nameTextField" destination="9a1-Yl-Zeq" id="8ID-QN-zQz"/>
@@ -128,13 +133,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="iL9-k7-yej" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="P3m-Od-3T8">
                     <connections>
                         <action selector="selectFromPhotoLibrary:" destination="BYZ-38-t0r" id="74m-4a-gjS"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1943.2" y="-3.1484257871064472"/>
+            <point key="canvasLocation" x="1823" y="-3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kbu-yg-qo3">
@@ -170,10 +176,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TjJ-QQ-38x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="-3.1484257871064472"/>
+            <point key="canvasLocation" x="1041" y="357"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="dhB-o3-9jZ"/>
+    </inferredMetricsTieBreakers>
 </document>

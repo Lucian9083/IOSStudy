@@ -34,6 +34,15 @@
     // 注册代理
     _nameTextField.delegate = self;
     
+    if(_meal){
+        self.navigationItem.title = _meal.name;
+        _nameTextField.text = _meal.name;
+        _photoImageView.image = _meal.photo;
+        _ratingControl.rating = _meal.rating;
+    }
+    
+    [self checkValidMealName];
+    
     
     NSLog(@"did load");
     
@@ -67,7 +76,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
+    NSLog(@"prepareForSegue");
+    
     if(_saveButton == sender){
+        
+        NSLog(@"prepareForSegue1");
         
         NSString *name = _nameTextField.text;
         
@@ -103,7 +116,7 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-// MARK: protocol
+// MARK: UIImagePickerControllerDelegate
 
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -125,7 +138,16 @@
     
 }
 
-// 设置键盘特性
+
+
+// MARK: UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    _saveButton.enabled = false;
+    
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     //This code ensures that if the user taps the image view while typing in the text field,
     //the keyboard is dismissed properly.
@@ -136,7 +158,19 @@
 // 输入结束处理
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     
+    [self checkValidMealName];
     
+    self.navigationItem.title = textField.text;
+    
+}
+
+- (void)checkValidMealName{
+    
+    NSString *mealName = _nameTextField.text;
+    
+    Boolean isValid = mealName != nil && ![mealName isEqualToString:@""];
+    
+    _saveButton.enabled = isValid;
 }
 
 
