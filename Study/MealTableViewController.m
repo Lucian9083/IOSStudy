@@ -94,10 +94,27 @@
     // add new meal to table view
     
     if(mealViewController && meal){
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_meals.count inSection:0];
-        NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
-        [_meals addObject:meal];
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+        
+        if(selectIndexPath){
+            // Update an old Meal
+            
+            _meals[selectIndexPath.row] = meal;
+            
+            [self.tableView reloadRowsAtIndexPaths:@[selectIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            
+            
+        }else{
+            // Add a new Meal
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_meals.count inSection:0];
+            
+            [_meals addObject:meal];
+            
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+        }
+        
+        
     }else{
         NSLog(@"happened a error");
     }

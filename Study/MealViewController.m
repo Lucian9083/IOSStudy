@@ -113,7 +113,19 @@
 
 - (IBAction)cancel:(UIBarButtonItem *)sender {
     
-    [self dismissViewControllerAnimated:true completion:nil];
+    Boolean isPresentingInAddMealMode = self.presentingViewController && [self.presentingViewController isKindOfClass:[UINavigationController class]];
+    
+    if(isPresentingInAddMealMode){
+        
+        [self dismissViewControllerAnimated:true completion:nil];
+        
+    }else{
+        
+        [self.navigationController popViewControllerAnimated:true];
+        
+    }
+    
+    
 }
 
 // MARK: UIImagePickerControllerDelegate
