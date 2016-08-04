@@ -10,8 +10,8 @@
 
 @interface RatingControl : UIView
 
-@property(nonatomic) NSUInteger rating;
+@property(nonatomic) int rating;
 
-- (void)setRating:(NSUInteger)rating;
+- (void)setRating:(int)rating;
 
 @end

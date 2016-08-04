@@ -8,6 +8,16 @@
 
 #import "Meal.h"
 
+@interface Meal()
+
+@property(nonatomic) NSString *name;
+
+@property(nonatomic) int rating;
+
+@property(nonatomic) UIImage *photo;
+
+@end
+
 @implementation Meal
 
 - (instancetype)initWithName:(NSString *)name rating:(int) rating photo:(UIImage *)photo{

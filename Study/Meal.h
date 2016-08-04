@@ -11,11 +11,11 @@
 
 @interface Meal : NSObject
 
-@property(nonatomic) int rating;        // record the rating num
+@property(nonatomic,readonly) int rating;        // record the rating num
 
-@property(nonatomic) UIImage *photo;    // the photo of the meal
+@property(nonatomic,readonly) UIImage *photo;    // the photo of the meal
 
-@property(nonatomic) NSString *name;    // the name of the meal
+@property(nonatomic,readonly) NSString *name;    // the name of the meal
 
 - (instancetype)initWithName:(NSString *)name rating:(int) rating photo:(UIImage *)photo;
 

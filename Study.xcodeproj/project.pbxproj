@@ -16,7 +16,7 @@
 		95A5FFAD1D50AD870016F82B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A5FFA41D50AD870016F82B /* AppDelegate.m */; };
 		95A5FFAE1D50AD870016F82B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95A5FFA51D50AD870016F82B /* Assets.xcassets */; };
 		95A5FFB11D50AD870016F82B /* RatingControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A5FFAA1D50AD870016F82B /* RatingControl.m */; };
-		95A5FFB21D50AD870016F82B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A5FFAC1D50AD870016F82B /* ViewController.m */; };
+		95A5FFB21D50AD870016F82B /* MealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A5FFAC1D50AD870016F82B /* MealViewController.m */; };
 		95A5FFB51D50ADE50016F82B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A5FFB31D50ADE50016F82B /* LaunchScreen.storyboard */; };
 		95A5FFB61D50ADE50016F82B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95A5FFB41D50ADE50016F82B /* Main.storyboard */; };
 /* End PBXBuildFile section */
@@ -59,8 +59,8 @@
 		95A5FFA61D50AD870016F82B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95A5FFA91D50AD870016F82B /* RatingControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingControl.h; sourceTree = "<group>"; };
 		95A5FFAA1D50AD870016F82B /* RatingControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingControl.m; sourceTree = "<group>"; };
-		95A5FFAB1D50AD870016F82B /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		95A5FFAC1D50AD870016F82B /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		95A5FFAB1D50AD870016F82B /* MealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MealViewController.h; sourceTree = "<group>"; };
+		95A5FFAC1D50AD870016F82B /* MealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MealViewController.m; sourceTree = "<group>"; };
 		95A5FFB31D50ADE50016F82B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95A5FFB41D50ADE50016F82B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,21 +115,15 @@
 			children = (
 				95A5FFA31D50AD870016F82B /* AppDelegate.h */,
 				95A5FFA41D50AD870016F82B /* AppDelegate.m */,
-				95A5FFAB1D50AD870016F82B /* ViewController.h */,
-				95A5FFAC1D50AD870016F82B /* ViewController.m */,
+				956D76A51D52E7E9000EB0CA /* ViewController */,
 				95A5FFA51D50AD870016F82B /* Assets.xcassets */,
 				95A5FFA61D50AD870016F82B /* Info.plist */,
-				95A5FFA91D50AD870016F82B /* RatingControl.h */,
-				95A5FFAA1D50AD870016F82B /* RatingControl.m */,
-				956D76A11D51DAA7000EB0CA /* MealTableViewController.h */,
-				956D76A21D51DAA7000EB0CA /* MealTableViewController.m */,
+				956D76A61D52E80E000EB0CA /* CustomizedView */,
 				95A5FFB31D50ADE50016F82B /* LaunchScreen.storyboard */,
 				95A5FFB41D50ADE50016F82B /* Main.storyboard */,
-				956D76981D51B969000EB0CA /* MealTableViewCell.h */,
-				956D76991D51B969000EB0CA /* MealTableViewCell.m */,
+				956D76A71D52E84B000EB0CA /* CustomizedTableViewCell */,
 				9536B6FC1D3F235800DA5F35 /* Supporting Files */,
-				956D76951D518374000EB0CA /* Meal.h */,
-				956D76961D518374000EB0CA /* Meal.m */,
+				956D76A41D52E7CA000EB0CA /* Model */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -158,6 +152,44 @@
 				9536B7231D3F235900DA5F35 /* Info.plist */,
 			);
 			path = StudyUITests;
+			sourceTree = "<group>";
+		};
+		956D76A41D52E7CA000EB0CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				956D76951D518374000EB0CA /* Meal.h */,
+				956D76961D518374000EB0CA /* Meal.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		956D76A51D52E7E9000EB0CA /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				95A5FFAB1D50AD870016F82B /* MealViewController.h */,
+				95A5FFAC1D50AD870016F82B /* MealViewController.m */,
+				956D76A11D51DAA7000EB0CA /* MealTableViewController.h */,
+				956D76A21D51DAA7000EB0CA /* MealTableViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		956D76A61D52E80E000EB0CA /* CustomizedView */ = {
+			isa = PBXGroup;
+			children = (
+				95A5FFA91D50AD870016F82B /* RatingControl.h */,
+				95A5FFAA1D50AD870016F82B /* RatingControl.m */,
+			);
+			name = CustomizedView;
+			sourceTree = "<group>";
+		};
+		956D76A71D52E84B000EB0CA /* CustomizedTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				956D76981D51B969000EB0CA /* MealTableViewCell.h */,
+				956D76991D51B969000EB0CA /* MealTableViewCell.m */,
+			);
+			name = CustomizedTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +331,7 @@
 				95A5FFB11D50AD870016F82B /* RatingControl.m in Sources */,
 				95A5FFAD1D50AD870016F82B /* AppDelegate.m in Sources */,
 				9536B6FE1D3F235800DA5F35 /* main.m in Sources */,
-				95A5FFB21D50AD870016F82B /* ViewController.m in Sources */,
+				95A5FFB21D50AD870016F82B /* MealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

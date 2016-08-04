@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Meal.h"
 
-@interface ViewController : UIViewController
+
+@interface MealViewController : UIViewController
+
+@property(nonatomic) Meal *meal;
 
 @end
 

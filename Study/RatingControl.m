@@ -86,7 +86,7 @@ const float OFFSET = 5.0f;
     
 //    NSLog(@"I am a button %@",button);
     
-    _rating = [_ratingButtons indexOfObject:button] + 1;
+    _rating = (int)[_ratingButtons indexOfObject:button] + 1;
     
     [self updateRatingState];
     
@@ -103,7 +103,7 @@ const float OFFSET = 5.0f;
     
 }
 
-- (void)setRating:(NSUInteger)rating{
+- (void)setRating:(int)rating{
     _rating = rating;
     
     [self setNeedsLayout];

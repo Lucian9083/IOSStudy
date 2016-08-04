@@ -6,43 +6,30 @@
 //  Copyright © 2016年 LvZheng. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MealViewController.h"
+#import "RatingControl.h"
 
-@interface ViewController() <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property(nonatomic, readwrite) NSString * mealName;
+@interface MealViewController() <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *mealLabel;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) IBOutlet UIImageView *photoImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (strong, nonatomic) IBOutlet RatingControl *ratingControl;
+
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+
 
 @end
 
-@implementation ViewController
 
-/**
- Get method of mealName
 
- @return the mealName
- */
-- (NSString *)mealName{
-    
-    if(!_mealName){
-        _mealName = @"I am a test String";
-    }
-    return _mealName;
-}
 
+@implementation MealViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    NSLog(@"content: %@",_mealName);
-    // synthesize a customize mealName
-    [self setMealName:@"I am a synthesize mealName"];
-    
-    NSLog(@"%@",_mealName);
     
     // 注册代理
     _nameTextField.delegate = self;
@@ -76,11 +63,25 @@
     
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+// MARK: navigation
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if(_saveButton == sender){
+        
+        NSString *name = _nameTextField.text;
+        
+        int rating = _ratingControl.rating;
+        
+        UIImage *photo = _photoImageView.image;
+        
+        _meal = [[Meal alloc] initWithName:name rating:rating photo:photo];
+        
+    }
 }
+
+
+// MARK: action
 
 - (IBAction)selectFromPhotoLibrary:(UITapGestureRecognizer *)sender {
     //This code ensures that if the user taps the image view while typing in the text field,
@@ -97,6 +98,13 @@
 
 }
 
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+// MARK: protocol
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     
@@ -109,9 +117,9 @@
     
     UIImage *imageView = [info valueForKey:UIImagePickerControllerOriginalImage];
     
-    UIImageView *localImageView = _photoImageView;
     
-    localImageView.image = imageView;
+    _photoImageView.image = imageView;
+    
     
     [self dismissViewControllerAnimated:true completion:nil];
     
@@ -128,11 +136,7 @@
 // 输入结束处理
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     
-    UILabel *localLabel = _mealLabel;
     
-    [localLabel setText:textField.text];
-    
-    textField.text = @"";
 }
 
 
