@@ -26,6 +26,8 @@
     // init the date of table view
     [self loadSimpleMeal];
     
+    self.navigationItem.leftBarButtonItem = [self editButtonItem];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -51,7 +53,6 @@
     
     
 }
-
 
 #pragma mark - Table view data source
 
@@ -83,64 +84,26 @@
     return cell;
 }
 
-// MARK: Action
-- (IBAction)unwindToMealList:(UIStoryboardSegue *)unwindSegue {
-    NSLog(@"I am segue fromm save");
-    
-    MealViewController *mealViewController = unwindSegue.sourceViewController;
-    
-    Meal *meal = mealViewController.meal;
-    
-    // add new meal to table view
-    
-    if(mealViewController && meal){
-        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
-        
-        if(selectIndexPath){
-            // Update an old Meal
-            
-            _meals[selectIndexPath.row] = meal;
-            
-            [self.tableView reloadRowsAtIndexPaths:@[selectIndexPath] withRowAnimation:UITableViewRowAnimationNone];
-            
-            
-        }else{
-            // Add a new Meal
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_meals.count inSection:0];
-            
-            [_meals addObject:meal];
-            
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-            
-        }
-        
-        
-    }else{
-        NSLog(@"happened a error");
-    }
-    
-    
-
-}
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [_meals removeObjectAtIndex:indexPath.row];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -180,6 +143,45 @@
     }else if([segue.identifier isEqualToString:@"addItem"]){
         
     };
+}
+
+- (IBAction)unwindToMealList:(UIStoryboardSegue *)unwindSegue {
+    NSLog(@"I am segue fromm save");
+    
+    MealViewController *mealViewController = unwindSegue.sourceViewController;
+    
+    Meal *meal = mealViewController.meal;
+    
+    // add new meal to table view
+    
+    if(mealViewController && meal){
+        NSIndexPath *selectIndexPath = [self.tableView indexPathForSelectedRow];
+        
+        if(selectIndexPath){
+            // Update an old Meal
+            
+            _meals[selectIndexPath.row] = meal;
+            
+            [self.tableView reloadRowsAtIndexPaths:@[selectIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            
+            
+        }else{
+            // Add a new Meal
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:_meals.count inSection:0];
+            
+            [_meals addObject:meal];
+            
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+            
+        }
+        
+        
+    }else{
+        NSLog(@"happened a error");
+    }
+    
+    
+    
 }
 
 
