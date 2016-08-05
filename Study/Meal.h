@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface Meal : NSObject
+@interface Meal : NSObject <NSCoding,NSCopying>
 
 @property(nonatomic,readonly) int rating;        // record the rating num
 
