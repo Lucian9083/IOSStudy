@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define TAG @"Meal->"
+
 @interface Meal : NSObject <NSCoding,NSCopying>
 
 @property(nonatomic,readonly) int rating;        // record the rating num
@@ -18,5 +20,7 @@
 @property(nonatomic,readonly) NSString *name;    // the name of the meal
 
 - (instancetype)initWithName:(NSString *)name rating:(int) rating photo:(UIImage *)photo;
+
++ (NSString *)archivePath;
 
 @end

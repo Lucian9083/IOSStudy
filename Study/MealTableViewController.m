@@ -24,7 +24,17 @@
     [super viewDidLoad];
     
     // init the date of table view
-    [self loadSimpleMeal];
+    
+//    NSMutableArray * meals = [self loadMeals];
+    
+//    if(meals){
+//
+//        _meals = meals;
+//
+//    }else{
+        [self loadSimpleMeal];
+//    }
+    
     
     self.navigationItem.leftBarButtonItem = [self editButtonItem];
     
@@ -98,6 +108,8 @@
         // Delete the row from the data source
         [_meals removeObjectAtIndex:indexPath.row];
         
+        [self saveMeals];
+        
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -146,7 +158,7 @@
 }
 
 - (IBAction)unwindToMealList:(UIStoryboardSegue *)unwindSegue {
-    NSLog(@"I am segue fromm save");
+    NSLog(@"I am segue from save");
     
     MealViewController *mealViewController = unwindSegue.sourceViewController;
     
@@ -175,12 +187,47 @@
             
         }
         
+        [self saveMeals];
+        
         
     }else{
         NSLog(@"happened a error");
     }
     
     
+    
+}
+
+#pragma mark - NSCoding
+
+- (void)saveMeals{
+    
+    NSString *path = [Meal archivePath];
+    
+//    NSMutableData *data = [[NSMutableData alloc] init];
+//    
+//    NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+//    
+//    [archiver encodeObject:@"" forKey:@"key_meals"];
+//    
+//    [archiver finishEncoding];
+//    
+//    Boolean isSuccessful = [data writeToFile:path atomically:YES];
+    
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_meals forKey:@"keymeals"];
+    
+    Boolean isSuccessful = [NSKeyedArchiver archiveRootObject:@"nihao" toFile:path];
+    
+    if(!isSuccessful){
+        NSLog(TAG"Failed to save meals!%@",path);
+    }
+    
+}
+
+-(NSMutableArray *)loadMeals{
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[Meal archivePath]];
     
 }
 

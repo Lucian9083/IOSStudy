@@ -21,6 +21,34 @@
 @implementation Meal
 
 
+#pragma mark - Archive Path Factory Method
+
++ (NSString *)archivePath{
+    
+//    NSString *directoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES) firstObject];
+    
+    NSURL *url =  [[[NSFileManager defaultManager] URLsForDirectory: NSDocumentDirectory inDomains:NSUserDomainMask] firstObject];
+    
+    NSLog(TAG"Url 1:%@", url.path);
+    
+    [url URLByAppendingPathComponent:@"meals.archive"];
+    
+//    NSLog(TAG "directoty 1:%@",directoryPath);
+    
+//    [directoryPath stringByAppendingPathComponent:@"meals.arc"];
+    
+    NSLog(TAG"Url 2:%@", url.path);
+    
+//    NSLog(TAG "directoty  2:%@",directoryPath);
+    
+    NSString *path = url.path;
+    
+    NSLog(TAG"Path:%@", path);
+    
+    return path;
+}
+
+
 #pragma mark - init
 
 - (instancetype)initWithName:(NSString *)name rating:(int) rating photo:(UIImage *)photo{
@@ -49,7 +77,7 @@
     
     int rating = [aDecoder decodeIntForKey:@"rating"];
     
-    UIImage *photo = [aDecoder decodeObjectOfClass:[UIImage class] forKey:@"photo"];
+    UIImage *photo = [aDecoder decodeObjectForKey:@"photo"];
     
     
     return [self initWithName:name rating:rating photo:photo];
@@ -76,7 +104,7 @@
     
     meal.rating = _rating;
     
-    meal.photo = [_photo copy];
+    meal.photo = _photo;
     
     return meal;
 }
